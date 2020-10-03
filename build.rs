@@ -30,6 +30,10 @@ impl ParseCallbacks for RedisModuleCallback {
 }
 
 fn main() {
+    if env::var("RUST_LOG").is_err() {
+        env::set_var("RUST_LOG", "debug")
+    }
+    env_logger::init();
     // Build a Redis pseudo-library so that we have symbols that we can link
     // against while building Rust code.
     //
